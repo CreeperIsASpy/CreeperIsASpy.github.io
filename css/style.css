@@ -1,314 +1,260 @@
+/* ==================== 
+   全局基础设置 
+   ==================== */
 html {
-    font-family: HarmonyOS_Sans;
+    /* 加上备选字体，防止别人电脑没装鸿蒙字体变宋体 */
+    font-family: "HarmonyOS_Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    height: 100%;
 }
 
 body {
+    margin: 0;
+    padding: 0;
     background-color: #202124;
-    background: url('../img/background.jpg') no-repeat center center fixed;
-    display: inline-block;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
+    background: url('../img/background.png') no-repeat center center fixed;
     background-size: cover;
+    /* 删掉了 display: inline-block，body 默认就该是 block，不然容易出bug */
     overflow-x: hidden;
-    user-select: none;
+    /* 删掉了 user-select: none，让用户能复制文字，体验更好 */
     cursor: default;
     z-index: -5;
     animation: image-fade-in 1s ease;
+    min-height: 100vh; /* 保证至少有一屏高 */
 }
 
-@keyframes header-fade-in {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 0.6;
-    }
-}
-
-@keyframes text-fade-in {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
+/* ==================== 
+   核心布局区
+   ==================== */
 .big-title-container {
-    text-align: center;
-    position: absolute;
-    left: 0;
-    top: 40%;
-    width: 100%;
-    opacity: 1;
-}
-
-.big-title-container .title {
-    position: absolute;
-    color: #FFF;
-    top: 1vw;
-    text-align: center;
-    width: 100%;
-    font-size: 5vw;
-    font-weight: normal;
-    letter-spacing: 0em;
-    line-height: 85%;
-    -webkit-animation: text-fade-in 1.5s;
-    animation: text-fade-in 1.5s;
-}
-
-.big-title-container .sub-title {
-    position: absolute;
-    padding-top: 10px;
-    color: #3e9afc;
-    top: 9vw;
-    left: 0;
-    text-align: center;
-    width: 100%;
-    font-weight: normal;
-    font-size: 2vw;
-    letter-spacing: 0em;
-    -webkit-animation: text-fade-in 1.5s;
-    animation: text-fade-in 1.5s;
-}
-
-@media screen and (max-width: 600px) {
-    .big-title-container .title {
-        font-size: 8vw;
-    }
-
-    .big-title-container .sub-title {
-        font-size: 6vw;
-        top: 13vw;
-    }
-}
-
-/* @media screen and (max-width: 840px) {
-    .big-title-container .title {
-        top: 40%;
-        font-size: 400%;
-    }
-    .big-title-container .sub-title {
-        top: 490%;
-        font-size: 140%;
-    }
-}
-
-@media screen and (max-width: 672px) {
-    .big-title-container .title {
-        top: 70%;
-        font-size: 300%;
-    }
-    .big-title-container .sub-title {
-        top: 440%;
-        font-size: 130%;
-    }
-}
-
-@media screen and (max-width: 550px) {
-    .big-title-container .title {
-        top: 120%;
-        font-size: 250%;
-    }
-    .big-title-container .sub-title {
-        top: 450%;
-        font-size: 120%;
-    }
-}
-
-@media screen and (max-width: 420px) {
-    .big-title-container .title {
-        top: 170%;
-        font-size: 200%;
-    }
-    .big-title-container .sub-title {
-        top: 440%;
-        font-size: 110%;
-    }
-}
-
-@media screen and (max-width: 338px) {
-    .big-title-container .title {
-        top: 185%;
-        font-size: 180%;
-    }
-    .big-title-container .sub-title {
-        top: 435%;
-        font-size: 100%;
-    }
-}
-
-This shit
-*/
-@keyframes image-fade-in {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-header {
-    background-color: black !important;
-    overflow: hidden;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 35px;
+    height: 100vh; /* 强制占满整个屏幕高度 */
+    
+    /* Flex 布局 */
+    display: flex;
+    flex-direction: column; /* 从上往下排 */
+    justify-content: center; /* 垂直居中 */
+    align-items: center;     /* 水平居中 */
+    
+    pointer-events: none; /* 可穿透 */
+    text-align: center;
+}
+
+/* 标题样式 */
+.title {
+    /* 恢复普通定位，不再飘在半空 */
+    position: relative; 
+    top: auto; 
+    pointer-events: auto; /* 恢复文字可选中 */
+    
+    color: #FFF;
+    font-size: 5vw; /* 保持响应式字体 */
+    font-weight: normal;
+    line-height: 1.2;
+    letter-spacing: 0em;
+    
+    /* 玻璃拟态效果 */
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 16px 32px; /* 左右加宽一点好看 */
+    margin-bottom: 20px; /* 标题和副标题之间的距离 */
+    
+    animation: text-fade-in 1.5s;
+}
+
+/* 副标题样式 */                                                                
+.sub-title {
+    /* 恢复普通定位 */
+    position: relative;
+    top: auto; 
+    left: auto;
+    pointer-events: auto;
+    padding-top: 0; /* 去掉原来巨大的 padding */
+    
+    color: #dedede;
+    font-weight: normal;
+    font-size: 2vw;
+    letter-spacing: 0em;
+    
+    animation: text-fade-in 1.5s;
+}
+
+/* ==================== 
+   移动端适配
+   ==================== */
+@media screen and (max-width: 768px) {
+    /* 手机上字体稍微大一点，不然看不清 */
+    .title {
+        font-size: 8vw; 
+        padding: 12px 24px;
+    }
+    
+    .sub-title {
+        font-size: 4.5vw;
+    }
+    
+}
+
+/* ==================== 
+   动画 
+   ==================== */
+@keyframes header-fade-in {
+    from { opacity: 0; }
+    to { opacity: 0.6; }
+}
+
+@keyframes text-fade-in {
+    from { opacity: 0; transform: translateY(20px); } /* 加了一点上浮效果 */
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes image-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ==================== 
+   Header & Footer （基本没动）
+   ==================== */
+header {
+    background-color: black !important;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 50px;
     opacity: 0.6;
     z-index: 5;
-    padding-left: 10px;
     padding-top: 10px;
+    padding-bottom: 10px;
+    /* 加上 box-sizing 防止 padding 把宽度撑爆 */
+    box-sizing: border-box; 
     font-size: 20px;
-    line-height: 25px;
-    -webkit-animation: header-fade-in 2s;
     animation: header-fade-in 2s;
     transition: all 1s ease;
 }
 
 header:hover {
     opacity: 0.9;
-    transition: all 1s ease;
 }
 
 header .left {
-    position: absolute;
-    top: 12px;
-    padding-left: 8px;
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 18px;
     color: #FFF;
-    -webkit-animation: text-fade-in 2s;
     animation: text-fade-in 2s;
 }
 
-header a {
-    color: #FFF;
+header .left img {
+    border-radius: 50%;
 }
+
+header a { color: #FFF; text-decoration: none; }
 
 header #time {
     position: absolute;
-    top: 10px;
     width: 100%;
+    left: 0;
+    top: 10px;
     color: #FFF;
     text-align: center;
-    -webkit-animation: text-fade-in 2s;
+    pointer-events: none; /* 防止挡住链接点击 */
     animation: text-fade-in 2s;
 }
 
 .arrow {
     position: absolute;
-    border-radius: 15px;
     width: 100%;
-    bottom: 10%;
+    bottom: 20px; /* 改成像素更稳 */
     left: 0;
-    height: 10px;
-    -webkit-animation: text-fade-in 3s;
+    text-align: center; /* 居中箭头 */
     animation: text-fade-in 3s;
 }
 
+/* ==================== 
+   Main & Content 
+   ==================== */
 main {
-    display: inline-block;
+    display: block
+    position: relative;
     z-index: 5;
+    width: 100%;
 }
 
 main .blank {
-    position: absolute;
+    position: relative;
+    margin-top: 100vh; /* 直接顶到第二屏 */
     text-align: center;
-    border-radius: 43px;
+    border-radius: 43px 43px 0 0; /* 只圆上面两个角 */
     width: 100%;
-    left: 0;
-    top: 100%;
-    background-color: #00000000/* #2B2C2F */;
+    background-color: transparent;
     color: white !important;
+    overflow: hidden; /* 防止圆角溢出 */
 }
 
-main .blank .regular_color, main .blank .alternate_color, main .blank .transparent{
-    width: 100%;
-    padding: 10px;
-}
+main .blank .regular_color { background-color: #202124; padding: 20px; }
+main .blank .alternate_color { background-color: #2B2C2F; padding: 20px; }
+main .blank .transparent { background-color: transparent; padding: 20px; }
 
-main .blank .regular_color {
-    background-color: #202124;
-}
-
-main .blank .alternate_color {
-    background-color: #2B2C2F;
-}
-
-main .blank .transparent {
-    background-color: #00000000;
-}
-
-main .blank h1 {
-    margin-bottom: 0px;
-}
-
+/* 标签样式 */
 .label {
     display: inline-block;
     background-color: #37393e;
-    border: none;
     border-radius: 5px;
-    padding: 5px 15px 4px 15px;
-    margin-left: 5px;
-    margin-right: 5px;
-    color:hsl(0, 0%, 80%);
-    transition: all 0.5s ease;
+    padding: 5px 15px;
+    margin: 5px;
+    color: #ccc;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .label:hover {
-    color:hsl(0, 0%, 100%);
-    font-size: 18px;
-    transition: all 0.5s ease;
+    color: #fff;
+    background-color: #3e9afc; 
+    transform: scale(1.05); /* 稍微放大 */
 }
 
+/* 一言样式 */
 .hitokoto {
     position: absolute;
-    bottom: 90px;
-    width: auto;
+    bottom: 12%; /* 稍微往上提一点 */
     left: 50%;
     transform: translateX(-50%);
+    width: 90%;
     max-width: 500px;
     text-align: center;
-    border-radius: 5px;
-    background-size: contain;
-    background-color: rgba(0, 0, 0, 0.20);
-    font-size: 20px;
-    padding: 2px 5px 2px 5px;
-    -webkit-animation: text-fade-in 1s;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.4); /* 加深一点背景 */
+    backdrop-filter: blur(5px); /* 给一言也加个毛玻璃 */
+    padding: 10px;
     animation: text-fade-in 1s;
-
+    z-index: 2;
 }
 
 .hitokoto #hitokoto_text {
-    color: #ffffffdd;
+    color: #ffffff;
     text-decoration: none;
-    -webkit-animation: text-fade-in 1.5s;
-    animation: text-fade-in 1.5s;
+    font-size: 16px;
 }
 
 footer {
-    display: inline-block;
-    padding: 10px;
+    display: block;
+    text-align: center;
+    padding: 20px;
     width: 100%;
     color: #fff;
     opacity: 0.8;
-    line-height: 15px;
+    box-sizing: border-box;
 }
 
-h1,h2,h3,h4,h5,h6 {
-    font-weight: bold;
-}
-
-p {
-    font-size: 17px;
-    line-height: 25px;
-}
-
-.blank a {
-    color: #3e9afc;
-    cursor: pointer;
-}
+a { color: #3e9afc; text-decoration: none; transition: color 0.3s; }
+a:hover { color: #6eb5ff; }

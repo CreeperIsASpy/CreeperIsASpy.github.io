@@ -1,17 +1,3 @@
-document.addEventListener('visibilitychange', function () {
-    var isHidden = document.hidden;
-    if (isHidden) {
-        document.title = "MFn|不要走嘛(*´д`*)";
-    } else {
-        setTimeout(() => {
-            document.title = "MFn|好耶,回来了(づ￣3￣)づ╭❤～";
-        }, 1000);
-        setTimeout(() => {
-            document.title = "MFn|Welcome!";
-        }, 2200);
-    }
-});
-
 //hitokoto
 fetch('https://v1.hitokoto.cn')
 .then(response => response.json())
@@ -54,8 +40,8 @@ function time() {
     }
     var time = document.getElementById("time");
     time.innerHTML = str;//put the text in the element
-    // 初始时间，日/月/年 时:分:秒
-    X = new Date("6/5/2023 00:00:00");
+    // 初始时间 月/日/年 时:分:秒
+    X = new Date("10/4/2025 00:00:00");
     Y = new Date();
     T = (Y.getTime() - X.getTime());
     M = 24 * 60 * 60 * 1000;
@@ -69,7 +55,3 @@ function time() {
     document.getElementById('runtime').innerHTML = "本站已运行: " + A + "天" + B + "小时" + C + "分" + D + "秒";
 }
 setInterval(time, 1000);//refresh(maybe too fast)
-function console_welcome() {
-    console.log("    __  _________     ___  __________\n   /  |/  / ____/___ |__ \\|__  /__  /\n  / /|_/ / /_  / __ \\__/ / /_ < /_ < \n / /  / / __/ / / / / __/___/ /__/ / \n/_/  /_/_/   /_/ /_/____/____/____/  \n                                  ");
-    console.log("💡Hello!\n✅Here is the Website of MFn!\n🌏Welcome to ask me to add your own website in 'Friendly Links'!\n🔵Use the latest Chromium kernel browser for the best experience!");
-}
