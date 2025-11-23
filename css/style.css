@@ -2,7 +2,6 @@
    全局基础设置 
    ==================== */
 html {
-    /* 加上备选字体，防止别人电脑没装鸿蒙字体变宋体 */
     font-family: "HarmonyOS_Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
     height: 100%;
 }
@@ -13,9 +12,7 @@ body {
     background-color: #202124;
     background: url('../img/background.png') no-repeat center center fixed;
     background-size: cover;
-    /* 删掉了 display: inline-block，body 默认就该是 block，不然容易出bug */
     overflow-x: hidden;
-    /* 删掉了 user-select: none，让用户能复制文字，体验更好 */
     cursor: default;
     z-index: -5;
     animation: image-fade-in 1s ease;
@@ -59,7 +56,7 @@ body {
     background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     border-radius: 16px;
-    padding: 16px 32px; /* 左右加宽一点好看 */
+    padding: 16px 32px; 
     margin-bottom: 20px; /* 标题和副标题之间的距离 */
     
     animation: text-fade-in 1.5s;
@@ -184,7 +181,7 @@ header #time {
    Main & Content 
    ==================== */
 main {
-    display: block
+    display: block;
     position: relative;
     z-index: 5;
     width: 100%;
@@ -201,9 +198,53 @@ main .blank {
     overflow: hidden; /* 防止圆角溢出 */
 }
 
-main .blank .regular_color { background-color: #202124; padding: 20px; }
+
+main .blank .regular_color .info-container {
+    background-color: transparent;
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* 水平居中子项 */
+    align-items: center;     /* 垂直居中子项 */
+    gap: 20px;
+    flex-wrap: wrap;        /* 小屏幕时换行 */
+    text-align: center;
+}
+
+main .blank .regular_color .info-container .about-me {
+    background-color: transparent;
+    padding: 20px;
+    margin: 0 auto;        /* 在可用空间内水平居中 */
+    flex: 0 1 360px;       /* 响应式宽度，允许缩放 */
+    max-width: 720px;
+}
+
+main .blank .regular_color .info-container .about-metrics {
+    background-color: transparent;
+    padding: 20px;
+    margin: 0 auto;
+    flex: 0 1 240px;
+}
+
+main .blank .regular_color .repos-container {
+    background-color: transparent;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: center; /* 居中 repo 项 */
+    align-items: center;
+    flex-wrap: wrap;         /* 小屏时换行排列 */
+    width: 100%;
+    text-align: center;
+}
+main .blank .regular_color  { background-color: #202124; padding: 20px; }
 main .blank .alternate_color { background-color: #2B2C2F; padding: 20px; }
 main .blank .transparent { background-color: transparent; padding: 20px; }
+
+@media screen and (max-width: 768px) {
+    main .blank .regular_color .info-container {
+        flex-direction: column; /* 手机上强制上下排列 */
+    }
+}
 
 /* 标签样式 */
 .label {

@@ -29,7 +29,7 @@
 
 <body onload="console_welcome()">
 
-	<header title="你看到我了……但这不对吧，你不应该看见我……好奇怪。">
+	<header>
 		<img width="27" height="27" src="https://www.helloimg.com/i/2025/08/05/6891cf32ea2d9.jpeg" />
 		<span class="left">
 			仿生猫 | 个人站
@@ -38,8 +38,7 @@
 	</header>
 	<div class="big-title-container">
 		<h1 class="title">
-			『只要不被世界改变，<br/>
-			你就改变了世界。』
+			『只要不被世界改变，<br/>你就改变了世界。』
 		</h1>
 		<br>
 		<span class="sub-title">
@@ -60,19 +59,29 @@
 	</center>
 	<main>
 		<div class="blank">
-			<div class="regular_color" id="关于我">
-				<h1>关于我</h1>
-				<br>
-				<p>
-					<span class="label">12年</span>
-					<span class="label">Minecraft</span>
-					<span class="label">Python</span>
-					<span class="label">小初生</span>
-				</p>
-				<p>（以下个人信息不完全正确）</p>
-				<p>我是一个尝试探索未知的小孩。<br>有着两三行代码的勇气和信心。</p>
-				<b>沉迷Python，但最大的项目却是用 WPF 写自定义主页。</p>
-				<p>爱写即用即丢的脚本，偶尔上传 GitHub，几乎不作后续更新。</p>
+			<div class="regular_color">
+				<div class="info-container">
+					<div class="about-me" id="关于我">
+						<h1>关于我</h1>
+						<br>
+						<p>
+							<span class="label">12年</span>
+							<span class="label">Minecraft</span>
+							<span class="label">Python</span>
+							<span class="label">小初生</span>
+						</p>
+						<p>（以下个人信息不完全正确）</p>
+						<p>我是一个尝试探索未知的小孩。<br>有着两三行代码的勇气和信心。</p>
+						<b>沉迷Python，但最大的项目却是用 WPF 写自定义主页。</p>
+						<p>爱写即用即丢的脚本，偶尔上传 GitHub，几乎不作后续更新。</p>
+					</div>
+					<div class="about-metrics">
+            			<img src="https://proxy.pipers.cn/https://raw.githubusercontent.com/CreeperIsASpy/CreeperIsASpy/main/github-metrics.svg"
+                 				alt="GitHub Metrics"
+                 				class="metrics-img"
+                 				onerror="this.onerror=null; this.src='https://placehold.co/800x400/1f2937/9ca3af?text=Image+Not+Found';">
+        			</div>
+				</div>
 			</div>
 			<div class="alternate_color" id="联系方式">
 				<h1>联系方式</h1>
@@ -83,13 +92,17 @@
 				<p>GitHub: <a href="https://github.com/CreeperIsASpy">CreeperIsASpy</a></p>
 			</div>
 			<div class="regular_color" id="我的作品">
-				<h1>我的作品</h1>
-				<br>
-				<p style="color:#dedede;"><i>/*做成这样只是因为懒，等下次维护再做得花哨些*/</i></p>
-				<p><a href="https://github.com/CreeperIsASpy/Magazine-Homepage-PCL">PCL2 杂志主页</a></p>
-				<p><a href="https://github.com/CreeperIsASpy/FullScreenNotice">FullScreenNotice</a></p>
-				<p><a href="https://github.com/Ignis-Studio/PCL2-Python">PCL2-Python（已Archive，因为做不下去）</a></p>
-				<p><a href="https://github.com/CreeperIsASpy/YASY-BBS">帮学校做的 BBS</a></p>
+				<div style="padding: 12px; align-self: center;">
+					<h1>我的作品</h1>
+					<div class="repos-container"> <!-- 第一行 -->
+						<p><a href="https://github.com/CreeperIsASpy/Magazine-Homepage-PCL"><img src="https://github-readme-stats.vercel.app/api/pin/?username=CreeperIsASpy&repo=Magazine-Homepage-PCL"></a></p>
+						<p><a href="https://github.com/CreeperIsASpy/FullScreenNotice"><img src="https://github-readme-stats.vercel.app/api/pin/?username=CreeperIsASpy&repo=FullScreenNotice"></a></p>
+					</div>
+					<div class="repos-container"> <!-- 第二行 -->
+						<p><a href="https://github.com/Ignis-Studio/PCL2-Python"><img src="https://github-readme-stats.vercel.app/api/pin/?username=Ignis-Studio&repo=PCL2-Python"></a></p>
+						<p><a href="https://github.com/CreeperIsASpy/YASY-BBS"><img src="https://github-readme-stats.vercel.app/api/pin/?username=CreeperIsASpy&repo=YASY-BBS"></a></p>
+					</div>
+				</div>
 			</div>
 			<div class="alternate_color">
 				<h1>友情链接</h1>
@@ -110,5 +123,3 @@
 </body>
 
 </html>
-
-<!-- background: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffile.moyublog.com%2Fd%2Ffile%2F2020-12-19%2F85bcaa1cca144bb65991b949a99f5
