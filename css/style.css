@@ -212,7 +212,6 @@ main .blank .regular_color .info-container {
 
 main .blank .regular_color .info-container .about-me {
     background-color: transparent;
-    padding: 20px;
     margin: 0 auto;        /* 在可用空间内水平居中 */
     flex: 0 1 360px;       /* 响应式宽度，允许缩放 */
     max-width: 720px;
@@ -220,7 +219,6 @@ main .blank .regular_color .info-container .about-me {
 
 main .blank .regular_color .info-container .about-metrics {
     background-color: transparent;
-    padding: 20px;
     margin: 0 auto;
     flex: 0 1 240px;
 }
@@ -232,7 +230,7 @@ main .blank .regular_color .repos-container {
     gap: 20px;
     justify-content: center; /* 居中 repo 项 */
     align-items: center;
-    flex-wrap: wrap;         /* 小屏时换行排列 */
+    flex-wrap: wrap; 
     width: 100%;
     text-align: center;
 }
@@ -243,6 +241,33 @@ main .blank .transparent { background-color: transparent; padding: 20px; }
 @media screen and (max-width: 768px) {
     main .blank .regular_color .info-container {
         flex-direction: column; /* 手机上强制上下排列 */
+    }
+}
+/* Small-screen fixes: prevent header time overlap and center about-me/repos */
+@media screen and (max-width: 768px) {
+    /* Stack header items to avoid overlap with centered time */
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 12px;
+        padding-right: 12px;
+        min-height: auto;
+    }
+
+    header .left {
+        align-self: flex-start;
+        padding-left: 0;
+    }
+
+    /* Make the time flow under the left content instead of being absolutely centered */
+    header #time {
+        position: relative;
+        width: 100%;
+        left: auto;
+        top: auto;
+        margin-top: 6px;
+        text-align: center;
+        pointer-events: none;
     }
 }
 
