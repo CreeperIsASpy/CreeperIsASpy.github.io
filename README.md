@@ -4,4 +4,5 @@
 从 Mfn233 的 repo 原样 clone 下来，改了一下！
 感谢 @Mfn233！
 
-已经 CNAME 至 https://creeperspy.xyz ！
+已经 CNAME 至 https://creeperspy.top ！
+
